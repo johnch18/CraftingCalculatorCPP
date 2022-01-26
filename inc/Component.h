@@ -12,18 +12,23 @@
 #include "Recipe.h"
 
 
+class Recipe;
+
+
 class Component
 {
 private:
-  static std::map<std::string, Component *> registry;
-  std::vector<Recipe *>                     recipes;
-  std::string                               name;
-  bool                                      isFluid;
+  static inline std::map<std::string, Component *> registry{};
+  std::vector<Recipe *>                            recipes;
+  std::string                                      name;
+  bool                                             isFluid;
   //
   Component(std::string &, bool);
 public:
+  //
   static Component *get_component(std::string &, bool);
 
+  // Yeet these mofos
   Component(const Component &) = delete;
   Component(Component &&) = delete;
   Component &operator=(const Component &) = delete;

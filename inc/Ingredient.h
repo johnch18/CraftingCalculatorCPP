@@ -9,6 +9,7 @@
 
 #include "Component.h"
 
+class Component;
 
 class Ingredient
 {

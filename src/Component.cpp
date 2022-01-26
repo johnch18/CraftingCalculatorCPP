@@ -6,17 +6,21 @@
 #include "Component.h"
 
 
-Component *Component::get_component(std::string & newName, bool fluid)
+Component *Component::get_component(std::string &newName, bool fluid)
 {
   Component *result = registry[newName];
-  if (!result) {
+  if (!result)
+  {
     result = new Component(newName, fluid);
     registry[newName] = result;
   }
   return result;
 }
 
-Component::Component(std::string &name, bool isFluid) : name(name), isFluid(isFluid)
+Component::Component(std::string &name, bool isFluid)
+  : name(name),
+    isFluid(isFluid)
 {
 
 }
+

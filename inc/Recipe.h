@@ -10,6 +10,7 @@
 #include <vector>
 #include "Ingredient.h"
 
+class Ingredient;
 
 class Recipe
 {
