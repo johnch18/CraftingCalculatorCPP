@@ -17,6 +17,12 @@ private:
   Component *component;
   unsigned  amount;
 public:
+  Component *get_component() const;
+  unsigned int get_amount() const;
+  void add(unsigned);
+  void subtract(unsigned);
+  void multiply(unsigned);
+  void divide(unsigned);
 };
 
 

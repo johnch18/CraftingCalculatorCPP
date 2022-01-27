@@ -13,6 +13,6 @@ add_executable(craftingCalculatorC__
         src/Ingredient.cpp
         inc/Ingredient.h
         src/Component.cpp
-        inc/Component.h)
+        inc/Component.h src/IngredientList.cpp inc/IngredientList.h)
 target_include_directories(craftingCalculatorC__ PRIVATE inc)
 
