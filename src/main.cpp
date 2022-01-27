@@ -2,7 +2,8 @@
 #include <Component.h>
 
 void test() {
-  Component *woodPlanks = Component::get_component((std::string &) "woodPlank", false);
+  std::string name = "woodPlank";
+  Component *woodPlanks = Component::get_component(name, false);
 }
 
 

@@ -6,6 +6,9 @@
 #include "Component.h"
 
 
+std::map<std::string, Component *> Component::registry =
+                                     std::map<std::string, Component *>();
+
 Component *Component::get_component(std::string &newName, bool fluid)
 {
   Component *result;
@@ -13,7 +16,9 @@ Component *Component::get_component(std::string &newName, bool fluid)
   {
     result = new Component{newName, fluid};
     registry[newName] = result;
-  } else {
+  }
+  else
+  {
     return registry.at(newName);
   }
   return result;
