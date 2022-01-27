@@ -36,3 +36,9 @@ void Ingredient::divide(unsigned num)
 {
   amount = ceil(static_cast<double>(amount) / num);
 }
+
+Ingredient::Ingredient(Component *component, unsigned amount): component
+(component), amount(amount)
+{
+
+}

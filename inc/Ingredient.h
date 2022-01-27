@@ -23,6 +23,7 @@ public:
   void subtract(unsigned);
   void multiply(unsigned);
   void divide(unsigned);
+  Ingredient(Component *component, unsigned amount);
 };
 
 

@@ -1,13 +1,17 @@
 #include <iostream>
-#include <Component.h>
 #include <cassert>
+#include <Component.h>
 
 
 void test() {
   std::string name = "woodPlank";
   Component *woodPlanks = Component::get_component(name, false);
-  Component *woodPlanks2 = Component::get_component(name, false);
-  assert(woodPlanks == woodPlanks2);
+  std::string name2 = "craftingBench";
+  Component *craftingBench = Component::get_component(name2, false);
+  Recipe test;
+  test.add_input(Ingredient(woodPlanks, 4));
+  test.add_output(Ingredient(craftingBench, 1));
+  craftingBench->add_recipe(&test);
 }
 
 

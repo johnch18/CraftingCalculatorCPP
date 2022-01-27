@@ -37,6 +37,7 @@ public:
   Component(Component &&) = delete;
   Component &operator=(const Component &) = delete;
   Component &operator=(Component &&) = delete;
+  void add_recipe(Recipe *recipe);
 };
 
 

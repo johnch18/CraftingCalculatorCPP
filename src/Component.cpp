@@ -45,3 +45,8 @@ bool Component::is_fluid() const
 {
   return isFluid;
 }
+
+void Component::add_recipe(Recipe *recipe)
+{
+  recipes.push_back(recipe);
+}

@@ -6,6 +6,10 @@
 #ifndef CRAFTINGCALCULATORC___CRAFTINGCALCULATOR_H
 #define CRAFTINGCALCULATORC___CRAFTINGCALCULATOR_H
 
+#include "Component.h"
+#include "Ingredient.h"
+#include "IngredientList.h"
+#include "Recipe.h"
 #include "RecipeBook.h"
 
 #endif //CRAFTINGCALCULATORC___CRAFTINGCALCULATOR_H

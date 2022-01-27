@@ -16,6 +16,9 @@ class Recipe
 {
 private:
   std::vector<Ingredient> inputs, outputs;
+public:
+  void add_input(Ingredient ingredient);
+  void add_output(Ingredient ingredient);
 };
 
 
