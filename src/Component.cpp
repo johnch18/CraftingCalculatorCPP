@@ -30,3 +30,18 @@ Component::Component(std::string &name, bool isFluid)
 {
 
 }
+
+const std::vector<Recipe *> &Component::get_recipes()
+{
+  return recipes;
+}
+
+const std::string &Component::get_name() const
+{
+  return name;
+}
+
+bool Component::is_fluid() const
+{
+  return isFluid;
+}
