@@ -9,6 +9,10 @@ add_executable(craftingCalculatorC__
         src/RecipeBook.cpp
         inc/RecipeBook.h
         src/Recipe.cpp
-        inc/Recipe.h src/Ingredient.cpp inc/Ingredient.h src/Component.cpp inc/Component.h)
+        inc/Recipe.h
+        src/Ingredient.cpp
+        inc/Ingredient.h
+        src/Component.cpp
+        inc/Component.h)
 target_include_directories(craftingCalculatorC__ PRIVATE inc)
 

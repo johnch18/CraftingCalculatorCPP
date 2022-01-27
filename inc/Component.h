@@ -18,10 +18,10 @@ class Recipe;
 class Component
 {
 private:
-  static inline std::map<std::string, Component *> registry{};
-  std::vector<Recipe *>                            recipes;
-  std::string                                      name;
-  bool                                             isFluid;
+  static std::map<std::string, Component *> registry;
+  std::vector<Recipe *>                     recipes;
+  std::string                               name;
+  bool                                      isFluid;
   //
   Component(std::string &, bool);
 public:

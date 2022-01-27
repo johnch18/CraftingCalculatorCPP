@@ -8,11 +8,13 @@
 
 Component *Component::get_component(std::string &newName, bool fluid)
 {
-  Component *result = registry[newName];
-  if (!result)
+  Component *result;
+  if (registry.find(newName) == registry.end())
   {
-    result = new Component(newName, fluid);
+    result = new Component{newName, fluid};
     registry[newName] = result;
+  } else {
+    return registry.at(newName);
   }
   return result;
 }
@@ -23,4 +25,3 @@ Component::Component(std::string &name, bool isFluid)
 {
 
 }
-
