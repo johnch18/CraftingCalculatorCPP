@@ -17,3 +17,4 @@ Ingredient *IngredientList::add_ingredient(Ingredient &ing)
     return &this->at(name);
   }
 }
+

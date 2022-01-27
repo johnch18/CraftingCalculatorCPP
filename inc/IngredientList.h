@@ -9,8 +9,9 @@
 
 #include "Ingredient.h"
 
+class Ingredient;
 
-class IngredientList: private std::map<std::string, Ingredient>
+class IngredientList: public std::map<std::string, Ingredient>
 {
 private:
 public:

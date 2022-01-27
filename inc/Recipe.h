@@ -9,16 +9,21 @@
 
 #include <vector>
 #include "Ingredient.h"
+#include "IngredientList.h"
 
 class Ingredient;
+class IngredientList;
 
 class Recipe
 {
 private:
-  std::vector<Ingredient> inputs, outputs;
+  IngredientList *inputs, *outputs;
 public:
+  explicit Recipe();
   void add_input(Ingredient ingredient);
   void add_output(Ingredient ingredient);
+  IngredientList get_cost(Ingredient);
+  Ingredient get_output_ingredient(Ingredient ingredient);
 };
 
 
