@@ -21,18 +21,16 @@ private:
   static std::map<std::string, Component *> registry;
   std::vector<Recipe *>                     recipes;
   std::string                               name;
-public:
-  const std::string &get_name() const;
-  bool is_fluid() const;
-private:
   bool                                      isFluid;
   //
   Component(std::string &, bool);
 public:
   //
   static Component *get_component(std::string &, bool);
+  const std::string &get_name() const;
+  bool is_fluid() const;
 
-  const std::vector<Recipe*>& get_recipes();
+  const std::vector<Recipe *> &get_recipes();
 
   // Yeet these mofos
   Component(const Component &) = delete;
