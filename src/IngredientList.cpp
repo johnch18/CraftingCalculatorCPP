@@ -22,10 +22,8 @@ void IngredientList::add_ingredient(Ingredient ing)
 void IngredientList::subtract_ingredient(Ingredient ing)
 {
   std::string name = ing.get_component()->get_name();
-  if (find(name) == end()) {
-
-  } else {
-
+  if (find(name) != end()) {
+    this->at(name).subtract(ing.get_amount());
   }
 }
 

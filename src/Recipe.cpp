@@ -24,7 +24,7 @@ Recipe::Recipe()
   outputs = new IngredientList();
 }
 
-Ingredient *Recipe::get_output_ingredient(Ingredient& ingredient)
+Ingredient *Recipe::get_output_ingredient(Ingredient &ingredient)
 {
   std::map<std::string, Ingredient>::iterator it;
   for (it = outputs->begin(); it != outputs->end(); it++)
@@ -37,7 +37,8 @@ Ingredient *Recipe::get_output_ingredient(Ingredient& ingredient)
   return nullptr;
 }
 
-void Recipe::get_cost(Ingredient ing, IngredientList *cache)
+void Recipe::get_cost(Ingredient ing, IngredientList *inputList,
+                      IngredientList *cache)
 {
   Ingredient *target = get_output_ingredient(ing);
   if (target == nullptr)
@@ -50,13 +51,14 @@ void Recipe::get_cost(Ingredient ing, IngredientList *cache)
   for (auto &_ingredient: *inputs)
   {
     Ingredient &ingredient = _ingredient.second;
-    Recipe *recipe = ingredient.get_component()->get_active_recipe();
+    Recipe     *recipe     = ingredient.get_component()->get_active_recipe();
     ingredient.multiply(numCrafts);
-    if (recipe == nullptr) {
-      cache->add_ingredient(ingredient);
+    if (recipe == nullptr)
+    {
+      inputList->add_ingredient(ingredient);
       continue;
     }
-    recipe->get_cost(ingredient, cache);
+    recipe->get_cost(ingredient, inputList);
   }
 }
 

@@ -20,12 +20,12 @@ private:
   IngredientList *inputs, *outputs;
   bool enabled;
 public:
+  explicit Recipe();
   bool is_enabled() const;
   void set_enabled(bool isEnabled);
-  explicit Recipe();
   void add_input(Ingredient ingredient);
   void add_output(Ingredient ingredient);
-  void get_cost(Ingredient ing, IngredientList* cache);
+  void get_cost(Ingredient, IngredientList*, IngredientList*);
   Ingredient *get_output_ingredient(Ingredient& ingredient);
 };
 

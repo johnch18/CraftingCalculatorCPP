@@ -32,7 +32,8 @@ void test()
   woodPlank->add_recipe(&woodPlankRecipe);
   //
   auto list = IngredientList();
-  stonePickaxeRecipe.get_cost(Ingredient(stonePickaxe, 2), &list);
+  auto cache = IngredientList();
+  stonePickaxeRecipe.get_cost(Ingredient(stonePickaxe, 2), &list, &cache);
   for (auto const &[name, ingredient] : list) {
     std::cout << name << ":" << ingredient.get_amount() << std::endl;
   }
