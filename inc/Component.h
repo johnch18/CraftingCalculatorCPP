@@ -26,7 +26,8 @@ private:
   Component(std::string &, bool);
 public:
   //
-  static Component *get_component(std::string &, bool);
+  static Component *get_component(std::string, bool fluid = false);
+  static Component *get_component(const char*, bool fluid = false);
   const std::string &get_name() const;
   bool is_fluid() const;
 

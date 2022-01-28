@@ -26,7 +26,7 @@ public:
   void add_input(Ingredient ingredient);
   void add_output(Ingredient ingredient);
   void get_cost(Ingredient ing, IngredientList* cache);
-  Ingredient *get_output_ingredient(Ingredient ingredient);
+  Ingredient *get_output_ingredient(Ingredient& ingredient);
 };
 
 

@@ -24,7 +24,7 @@ Recipe::Recipe()
   outputs = new IngredientList();
 }
 
-Ingredient *Recipe::get_output_ingredient(Ingredient ingredient)
+Ingredient *Recipe::get_output_ingredient(Ingredient& ingredient)
 {
   std::map<std::string, Ingredient>::iterator it;
   for (it = outputs->begin(); it != outputs->end(); it++)

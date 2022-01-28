@@ -9,7 +9,7 @@
 std::map<std::string, Component *> Component::registry =
                                      std::map<std::string, Component *>();
 
-Component *Component::get_component(std::string &newName, bool fluid)
+Component *Component::get_component(std::string newName, bool fluid)
 {
   Component *result;
   if (registry.find(newName) == registry.end())
@@ -59,4 +59,9 @@ Recipe *Component::get_active_recipe()
     }
   }
   return nullptr;
+}
+
+Component *Component::get_component(const char *str, bool fluid)
+{
+  return Component::get_component(std::string(str), fluid);
 }
