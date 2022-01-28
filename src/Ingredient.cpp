@@ -42,3 +42,8 @@ Ingredient::Ingredient(Component *component, unsigned amount): component
 {
 
 }
+
+bool Ingredient::isValid() const
+{
+  return component != nullptr && amount > 0;
+}

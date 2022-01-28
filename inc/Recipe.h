@@ -18,12 +18,15 @@ class Recipe
 {
 private:
   IngredientList *inputs, *outputs;
+  bool enabled;
 public:
+  bool is_enabled() const;
+  void set_enabled(bool isEnabled);
   explicit Recipe();
   void add_input(Ingredient ingredient);
   void add_output(Ingredient ingredient);
-  IngredientList get_cost(Ingredient);
-  Ingredient get_output_ingredient(Ingredient ingredient);
+  void get_cost(Ingredient ing, IngredientList* cache);
+  Ingredient *get_output_ingredient(Ingredient ingredient);
 };
 
 

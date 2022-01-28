@@ -9,16 +9,24 @@ void test()
   Component   *woodPlanks    = Component::get_component(name, false);
   std::string name2          = "craftingBench";
   Component   *craftingBench = Component::get_component(name2, false);
-  Recipe      test;
-  test.add_input(Ingredient(woodPlanks, 4));
-  test.add_output(Ingredient(craftingBench, 1));
-  craftingBench->add_recipe(&test);
-  auto                                        list = test.get_cost(
-    Ingredient(craftingBench, 256));
-  std::map<std::string, Ingredient>::iterator it;
-  for (auto const&[ingName, ing]: list)
+  std::string name3          = "woodLog";
+  Component *woodLog = Component::get_component(name3, false);
+  Recipe      woodPlanksRecipe;
+  Recipe      craftingBenchRecipe;
+  craftingBenchRecipe.add_input(Ingredient(woodPlanks, 4));
+  craftingBenchRecipe.add_output(Ingredient(craftingBench, 1));
+  woodPlanksRecipe.add_input(Ingredient(woodLog, 1));
+  woodPlanksRecipe.add_output(Ingredient(woodPlanks, 4));
+  //
+  craftingBench->add_recipe(&craftingBenchRecipe);
+  woodPlanks->add_recipe(&woodPlanksRecipe);
+  auto target = Ingredient(craftingBench, 256);
+  auto *list  = new IngredientList();
+  craftingBenchRecipe.get_cost(target, list);
+  for (auto const&[ingName, ing]: *list)
   {
-    std::cout << ingName << ":" << ing.get_amount() << std::endl;
+    if (ing.isValid())
+      std::cout << ingName << ":" << ing.get_amount() << std::endl;
   }
 }
 

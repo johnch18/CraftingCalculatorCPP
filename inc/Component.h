@@ -31,6 +31,7 @@ public:
   bool is_fluid() const;
 
   const std::vector<Recipe *> &get_recipes();
+  Recipe* get_active_recipe();
 
   // Yeet these mofos
   Component(const Component &) = delete;

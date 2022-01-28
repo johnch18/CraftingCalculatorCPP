@@ -3,6 +3,8 @@
 // GPL License, don't be a dick
 //
 
+#include <cmath>
+#include <iostream>
 #include "Recipe.h"
 
 
@@ -18,23 +20,53 @@ void Recipe::add_output(Ingredient ingredient)
 
 Recipe::Recipe()
 {
-  inputs = new IngredientList();
+  inputs  = new IngredientList();
   outputs = new IngredientList();
 }
 
-IngredientList Recipe::get_cost(Ingredient ing)
+Ingredient *Recipe::get_output_ingredient(Ingredient ingredient)
 {
-  IngredientList list{};
-  auto output = get_output_ingredient(ing);
-  return list;
-}
-
-Ingredient Recipe::get_output_ingredient(Ingredient ingredient)
-{
-  for (auto const& [key, val] : *outputs) {
-    if (key == ingredient.get_component()->get_name()) {
-      return val;
+  std::map<std::string, Ingredient>::iterator it;
+  for (it = outputs->begin(); it != outputs->end(); it++)
+  {
+    if (it->first == ingredient.get_component()->get_name())
+    {
+      return &it->second;
     }
   }
-  return {nullptr, 0};
+  return nullptr;
 }
+
+void Recipe::get_cost(Ingredient ing, IngredientList *cache)
+{
+  Ingredient *target = get_output_ingredient(ing);
+  if (target == nullptr)
+  {
+    throw std::exception();
+  }
+  unsigned numCrafts = ceil(static_cast<double>(ing.get_amount()) / target
+    ->get_amount());
+
+  for (auto &_ingredient: *inputs)
+  {
+    Ingredient &ingredient = _ingredient.second;
+    Recipe *recipe = ingredient.get_component()->get_active_recipe();
+    ingredient.multiply(numCrafts);
+    if (recipe == nullptr) {
+      cache->add_ingredient(ingredient);
+      continue;
+    }
+    recipe->get_cost(ingredient, cache);
+  }
+}
+
+bool Recipe::is_enabled() const
+{
+  return enabled;
+}
+
+void Recipe::set_enabled(bool isEnabled)
+{
+  Recipe::enabled = isEnabled;
+}
+

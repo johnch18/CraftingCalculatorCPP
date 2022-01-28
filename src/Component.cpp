@@ -50,3 +50,13 @@ void Component::add_recipe(Recipe *recipe)
 {
   recipes.push_back(recipe);
 }
+
+Recipe *Component::get_active_recipe()
+{
+  for (auto recipe : recipes) {
+    if (recipe->is_enabled()){
+      return recipe;
+    }
+  }
+  return nullptr;
+}
