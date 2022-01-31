@@ -37,8 +37,8 @@ void Ingredient::divide(unsigned num)
   amount = ceil(static_cast<double>(amount) / num);
 }
 
-Ingredient::Ingredient(Component *component, unsigned amount): component
-(component), amount(amount)
+Ingredient::Ingredient(Component *component, unsigned amount)
+  : Ingredient(component, amount, 1.0)
 {
 
 }
@@ -46,4 +46,18 @@ Ingredient::Ingredient(Component *component, unsigned amount): component
 bool Ingredient::isValid() const
 {
   return component != nullptr && amount > 0;
+}
+
+Ingredient::Ingredient(Component *component, unsigned int amount,
+                       double chance)
+  : component(component),
+    amount(amount),
+    chance(chance)
+{
+
+}
+
+double Ingredient::get_chance() const
+{
+  return chance;
 }

@@ -11,23 +11,25 @@ void test()
   Component *woodPlank = Component::get_component("woodPlank");
   Component *woodLog = Component::get_component("woodLog");
   //
-  Recipe stonePickaxeRecipe{};
-  Recipe stickRecipe{};
-  Recipe woodPlankRecipe{};
+  Recipe stonePickaxeRecipe{
+    {{stonePickaxe, 1}},
+    {{cobblestone, 3}, {stick, 2}}
+  };
+  Recipe stickRecipe{
+    {{stick, 4}},
+    {{woodPlank, 2}}
+  };
+  Recipe woodPlankRecipe{
+    {{woodPlank, 4}},
+    {{woodLog, 1}}
+  };
   //
-  stonePickaxeRecipe.add_input(Ingredient(cobblestone, 3));
-  stonePickaxeRecipe.add_input(Ingredient(stick, 2));
-  stonePickaxeRecipe.add_output(Ingredient(stonePickaxe, 1));
   stonePickaxeRecipe.set_enabled(true);
   stonePickaxe->add_recipe(&stonePickaxeRecipe);
   //
-  stickRecipe.add_input(Ingredient(woodPlank, 2));
-  stickRecipe.add_output(Ingredient(stick, 4));
   stickRecipe.set_enabled(true);
   stick->add_recipe(&stickRecipe);
   //
-  woodPlankRecipe.add_input(Ingredient(woodLog, 1));
-  woodPlankRecipe.add_output(Ingredient(woodPlank, 4));
   woodPlankRecipe.set_enabled(true);
   woodPlank->add_recipe(&woodPlankRecipe);
   //

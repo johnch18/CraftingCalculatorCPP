@@ -9,14 +9,18 @@
 
 #include "Component.h"
 
+
 class Component;
+
 
 class Ingredient
 {
 private:
   Component *component;
   unsigned  amount;
+  double    chance;
 public:
+  double get_chance() const;
   Component *get_component() const;
   unsigned int get_amount() const;
   void add(unsigned);
@@ -24,6 +28,7 @@ public:
   void multiply(unsigned);
   void divide(unsigned);
   Ingredient(Component *component, unsigned amount);
+  Ingredient(Component *component, unsigned amount, double chance);
   bool isValid() const;
 };
 

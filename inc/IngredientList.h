@@ -18,6 +18,8 @@ public:
   void add_ingredient(Ingredient);
   void subtract_ingredient(Ingredient);
   void combine_with(IngredientList&);
+  bool contains(std::string);
+  bool contains(Ingredient&);
 };
 
 

@@ -3,6 +3,7 @@
 // GPL License, don't be a dick
 //
 
+#include <algorithm>
 #include <cmath>
 #include <iostream>
 #include "Recipe.h"
@@ -45,8 +46,17 @@ void Recipe::get_cost(Ingredient ing, IngredientList *inputList,
   {
     throw std::exception();
   }
-  unsigned numCrafts = ceil(static_cast<double>(ing.get_amount()) / target
-    ->get_amount());
+
+  if (cache->contains(ing)) {
+    unsigned n = std::min(ing.get_amount(), cache->at(ing.get_component()
+    ->get_name()).get_amount());
+    cache->at(ing.get_component()->get_name()).subtract(n);
+    ing.subtract(n);
+  }
+
+  auto ingAmount = static_cast<double>(ing.get_amount());
+  unsigned numCrafts = ceil(ingAmount / (target->get_amount() *
+    target->get_chance()));
 
   for (auto &_ingredient: *inputs)
   {
@@ -58,7 +68,7 @@ void Recipe::get_cost(Ingredient ing, IngredientList *inputList,
       inputList->add_ingredient(ingredient);
       continue;
     }
-    recipe->get_cost(ingredient, inputList);
+    recipe->get_cost(ingredient, inputList, cache);
   }
 }
 
@@ -71,4 +81,16 @@ void Recipe::set_enabled(bool isEnabled)
 {
   Recipe::enabled = isEnabled;
 }
+
+Recipe::Recipe(std::initializer_list<Ingredient> outputs,
+  std::initializer_list<Ingredient> inputs)
+{
+  for (auto& output : outputs) {
+    this->outputs->add_ingredient(output);
+  }
+  for (auto& input : inputs) {
+    this->inputs->add_ingredient(input);
+  }
+}
+
 

@@ -21,6 +21,7 @@ private:
   bool enabled;
 public:
   explicit Recipe();
+  Recipe(std::initializer_list<Ingredient>, std::initializer_list<Ingredient>);
   bool is_enabled() const;
   void set_enabled(bool isEnabled);
   void add_input(Ingredient ingredient);

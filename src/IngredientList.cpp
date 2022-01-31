@@ -35,3 +35,13 @@ void IngredientList::combine_with(IngredientList &other)
   }
 }
 
+bool IngredientList::contains(Ingredient &ing)
+{
+  return contains(ing.get_component()->get_name());
+}
+
+bool IngredientList::contains(std::string s)
+{
+  return find(s) != end();
+}
+
