@@ -13,16 +13,16 @@ void test()
    */
   //
   Recipe         woodPickaxeRecipe{
-    {{"woodPickaxe", 1}},
-    {{"woodPlank",   3}, {"stick", 2}}
+    {"woodPickaxe"},
+    {"woodPlank:3", "stick:2"}
   };
   Recipe         stickRecipe{
-    {{"stick",     4}},
-    {{"woodPlank", 2}}
+    {"stick:4"},
+    {"woodPlank:2"}
   };
   Recipe         woodPlankRecipe{
-    {{"woodPlank", 4}},
-    {{"woodLog",   1}}
+    {"woodPlank:4"},
+    {"woodLog"}
   };
   //
   auto           output = woodPickaxeRecipe.get_cost(

@@ -23,6 +23,8 @@ private:
 public:
   explicit Recipe();
   Recipe(std::initializer_list<Ingredient>, std::initializer_list<Ingredient>);
+  Recipe(std::initializer_list<std::string>,
+    std::initializer_list<std::string>);
   bool is_enabled() const;
   void set_enabled(bool isEnabled);
   void add_input(Ingredient ingredient);

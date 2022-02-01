@@ -111,4 +111,15 @@ std::pair<IngredientList, IngredientList> Recipe::get_cost(Ingredient inp)
   return result;
 }
 
+Recipe::Recipe(std::initializer_list<std::string> inputs,
+  std::initializer_list<std::string> outputs): Recipe()
+{
+  for (const auto& input: inputs) {
+    this->inputs->add_ingredient({input});
+  }
+  for (const auto& output: outputs) {
+    this->outputs->add_ingredient({output});
+  }
+}
+
 
