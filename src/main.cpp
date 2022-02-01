@@ -5,12 +5,6 @@
 
 void test()
 {
-  /*
-  Component      *woodPickaxe = Component::get_component("woodPickaxe");
-  Component      *stick       = Component::get_component("stick");
-  Component      *woodPlank   = Component::get_component("woodPlank");
-  Component      *woodLog     = Component::get_component("woodLog");
-   */
   //
   Recipe         woodPickaxeRecipe{
     {"woodPickaxe"},
@@ -25,8 +19,7 @@ void test()
     {"woodLog"}
   };
   //
-  auto           output = woodPickaxeRecipe.get_cost(
-    Ingredient{"woodPickaxe", 64});
+  auto           output = woodPickaxeRecipe.get_cost({"woodPickaxe:64"});
   IngredientList list   = output.first;
   IngredientList excess = output.second;
   for (auto const &[name, ingredient]: list)
