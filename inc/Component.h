@@ -28,6 +28,7 @@ public:
   //
   static Component *get_component(std::string, bool fluid = false);
   static Component *get_component(const char*, bool fluid = false);
+  static void memory_cleanup();
   const std::string &get_name() const;
   bool is_fluid() const;
 

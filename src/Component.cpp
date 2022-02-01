@@ -53,8 +53,10 @@ void Component::add_recipe(Recipe *recipe)
 
 Recipe *Component::get_active_recipe()
 {
-  for (auto recipe : recipes) {
-    if (recipe->is_enabled()){
+  for (auto recipe: recipes)
+  {
+    if (recipe->is_enabled())
+    {
       return recipe;
     }
   }
@@ -64,4 +66,12 @@ Recipe *Component::get_active_recipe()
 Component *Component::get_component(const char *str, bool fluid)
 {
   return Component::get_component(std::string(str), fluid);
+}
+
+void Component::memory_cleanup()
+{
+  for (auto &[name, component]: Component::registry)
+  {
+    delete component;
+  }
 }

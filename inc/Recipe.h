@@ -18,7 +18,8 @@ class Recipe
 {
 private:
   IngredientList *inputs, *outputs;
-  bool enabled;
+  bool enabled = true;
+  void get_cost_rec(Ingredient, IngredientList*, IngredientList*);
 public:
   explicit Recipe();
   Recipe(std::initializer_list<Ingredient>, std::initializer_list<Ingredient>);
@@ -26,7 +27,7 @@ public:
   void set_enabled(bool isEnabled);
   void add_input(Ingredient ingredient);
   void add_output(Ingredient ingredient);
-  void get_cost(Ingredient, IngredientList*, IngredientList*);
+  std::pair<IngredientList, IngredientList> get_cost(Ingredient);
   Ingredient *get_output_ingredient(Ingredient& ingredient);
 };
 

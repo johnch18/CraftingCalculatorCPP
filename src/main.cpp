@@ -5,40 +5,33 @@
 
 void test()
 {
-  Component *woodPickaxe = Component::get_component("woodPickaxe");
-  Component *stick       = Component::get_component("stick");
-  Component *woodPlank   = Component::get_component("woodPlank");
-  Component *woodLog     = Component::get_component("woodLog");
+  Component      *woodPickaxe = Component::get_component("woodPickaxe");
+  Component      *stick       = Component::get_component("stick");
+  Component      *woodPlank   = Component::get_component("woodPlank");
+  Component      *woodLog     = Component::get_component("woodLog");
   //
-  Recipe    woodPickaxeRecipe{
+  Recipe         woodPickaxeRecipe{
     {{woodPickaxe, 1}},
     {{woodPlank,   3}, {stick, 2}}
   };
-  Recipe    stickRecipe{
+  Recipe         stickRecipe{
     {{stick,     4}},
     {{woodPlank, 2}}
   };
-  Recipe    woodPlankRecipe{
+  Recipe         woodPlankRecipe{
     {{woodPlank, 4}},
     {{woodLog,   1}}
   };
   //
-  woodPickaxeRecipe.set_enabled(true);
-  woodPickaxe->add_recipe(&woodPickaxeRecipe);
-  //
-  stickRecipe.set_enabled(true);
-  stick->add_recipe(&stickRecipe);
-  //
-  woodPlankRecipe.set_enabled(true);
-  woodPlank->add_recipe(&woodPlankRecipe);
-  //
-  auto list  = IngredientList();
-  auto cache = IngredientList();
-  woodPickaxeRecipe.get_cost(Ingredient(woodPickaxe, 64), &list, &cache);
+  auto           target       = Ingredient(woodPickaxe, 64);
+  auto           output       = woodPickaxeRecipe.get_cost(target);
+  IngredientList list         = output.first;
+  IngredientList excess       = output.second;
   for (auto const &[name, ingredient]: list)
   {
     std::cout << name << ":" << ingredient.get_amount() << std::endl;
   }
+  Component::memory_cleanup();
 }
 
 
