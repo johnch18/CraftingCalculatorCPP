@@ -30,6 +30,7 @@ public:
   Ingredient(Component *component, unsigned amount);
   Ingredient(Component *component, unsigned amount, double chance);
   bool isValid() const;
+  std::string get_str();
 };
 
 

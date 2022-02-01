@@ -41,29 +41,33 @@ Ingredient *Recipe::get_output_ingredient(Ingredient &ingredient)
 void Recipe::get_cost(Ingredient ing, IngredientList *inputList,
                       IngredientList *cache)
 {
-  Ingredient *target = get_output_ingredient(ing);
+  Ingredient *target      = get_output_ingredient(ing);
   if (target == nullptr)
   {
     throw std::exception();
   }
-
-  if (cache->contains(ing)) {
-    unsigned n = std::min(ing.get_amount(), cache->at(ing.get_component()
-    ->get_name()).get_amount());
-    cache->at(ing.get_component()->get_name()).subtract(n);
+  //
+  std::cout << ing.get_str() << " ";
+  // Check if cache has the requested item, use what's needed
+  if (cache->contains(ing))
+  {
+    auto     &cacheIng = cache->at(ing.get_component()->get_name());
+    unsigned n         = std::min(ing.get_amount(), cacheIng.get_amount());
+    cacheIng.subtract(n);
     ing.subtract(n);
   }
-
-  auto ingAmount = static_cast<double>(ing.get_amount());
-  unsigned numCrafts = ceil(ingAmount / (target->get_amount() *
-    target->get_chance()));
-
+  //
+  auto       ingAmount    = static_cast<double>(ing.get_amount());
+  double     targetFactor = target->get_amount() * target->get_chance();
+  unsigned   numCrafts    = ceil(ingAmount / targetFactor);
+  std::cout << numCrafts << std::endl;
+  //
   for (auto &_ingredient: *inputs)
   {
     Ingredient &ingredient = _ingredient.second;
     Recipe     *recipe     = ingredient.get_component()->get_active_recipe();
     ingredient.multiply(numCrafts);
-    if (recipe == nullptr)
+    if (recipe == nullptr || !recipe->is_enabled())
     {
       inputList->add_ingredient(ingredient);
       continue;
@@ -83,12 +87,15 @@ void Recipe::set_enabled(bool isEnabled)
 }
 
 Recipe::Recipe(std::initializer_list<Ingredient> outputs,
-  std::initializer_list<Ingredient> inputs)
+               std::initializer_list<Ingredient> inputs)
+  : Recipe()
 {
-  for (auto& output : outputs) {
+  for (auto &output: outputs)
+  {
     this->outputs->add_ingredient(output);
   }
-  for (auto& input : inputs) {
+  for (auto &input: inputs)
+  {
     this->inputs->add_ingredient(input);
   }
 }

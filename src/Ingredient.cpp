@@ -4,6 +4,7 @@
 //
 
 #include <cmath>
+#include <sstream>
 #include "Ingredient.h"
 
 
@@ -60,4 +61,11 @@ Ingredient::Ingredient(Component *component, unsigned int amount,
 double Ingredient::get_chance() const
 {
   return chance;
+}
+
+std::string Ingredient::get_str()
+{
+  std::stringstream stream;
+  stream << component->get_name() << ":" << amount;
+  return stream.str();
 }
