@@ -20,6 +20,13 @@ private:
   unsigned  amount;
   double    chance;
 public:
+  Ingredient(std::string);
+  Ingredient(std::string, unsigned);
+  Ingredient(std::string, unsigned, double);
+  Ingredient(Component *component);
+  Ingredient(Component *component, unsigned amount);
+  Ingredient(Component *component, unsigned amount, double chance);
+  //
   double get_chance() const;
   Component *get_component() const;
   unsigned int get_amount() const;
@@ -27,8 +34,6 @@ public:
   void subtract(unsigned);
   void multiply(unsigned);
   void divide(unsigned);
-  Ingredient(Component *component, unsigned amount);
-  Ingredient(Component *component, unsigned amount, double chance);
   bool isValid() const;
   std::string get_str();
 };
