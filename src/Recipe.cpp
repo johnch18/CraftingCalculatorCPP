@@ -28,10 +28,12 @@ Recipe::Recipe()
 
 Ingredient *Recipe::get_output_ingredient(Ingredient &ingredient)
 {
+  auto name = ingredient.get_component()->get_name();
   std::map<std::string, Ingredient>::iterator it;
   for (it = outputs->begin(); it != outputs->end(); it++)
   {
-    if (it->first == ingredient.get_component()->get_name())
+    // std::cout << it->first << " " << name << std::endl;
+    if (it->first == name)
     {
       return &it->second;
     }
@@ -111,14 +113,14 @@ std::pair<IngredientList, IngredientList> Recipe::get_cost(Ingredient inp)
   return result;
 }
 
-Recipe::Recipe(std::initializer_list<std::string> inputs,
-  std::initializer_list<std::string> outputs): Recipe()
+Recipe::Recipe(std::initializer_list<std::string> outputs,
+  std::initializer_list<std::string> inputs): Recipe()
 {
-  for (const auto& input: inputs) {
-    this->inputs->add_ingredient({input});
+  for (auto input: inputs) {
+    this->add_input(Ingredient{input});
   }
-  for (const auto& output: outputs) {
-    this->outputs->add_ingredient({output});
+  for (auto output: outputs) {
+    this->add_output(Ingredient{output});
   }
 }
 

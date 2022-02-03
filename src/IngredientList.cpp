@@ -3,6 +3,7 @@
 // GPL License, don't be a dick
 //
 
+#include <iostream>
 #include "IngredientList.h"
 
 

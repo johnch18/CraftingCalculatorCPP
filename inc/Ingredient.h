@@ -19,6 +19,7 @@ private:
   Component *component;
   unsigned  amount;
   double    chance;
+  void init_from_string(std::string);
 public:
   Ingredient(std::string);
   Ingredient(std::string, unsigned);
