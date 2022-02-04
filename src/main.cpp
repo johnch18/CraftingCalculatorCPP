@@ -19,7 +19,7 @@ void test_recursive()
   //
   auto           target = Ingredient{"netherStar:64"};
   auto           result = netherStarRecipe.get_cost(target,
-                                                    {"netherStarDust:4"});
+                                                    {"tinyNetherStarDust:1"});
   IngredientList cost   = result.first;
   for (auto &[name, ingredient]: cost)
   {

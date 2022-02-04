@@ -1,4 +1,4 @@
-#Crafting Calculator vAlpha
+# Crafting Calculator vAlpha
 
 ## Supports (Eventually):
 
