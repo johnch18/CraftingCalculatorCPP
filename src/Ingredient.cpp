@@ -137,3 +137,8 @@ void Ingredient::init_from_string(std::string name)
   this->amount    = iAmt;
   this->chance    = iChn;
 }
+
+bool Ingredient::is_same_as(Ingredient &other)
+{
+  return component == other.component;
+}

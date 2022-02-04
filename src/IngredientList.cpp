@@ -46,3 +46,21 @@ bool IngredientList::contains(std::string s)
   return find(s) != end();
 }
 
+IngredientList::IngredientList(std::initializer_list<Ingredient> list): IngredientList()
+{
+  for (auto &i : list) {
+    add_ingredient(i);
+  }
+}
+
+IngredientList::IngredientList(std::initializer_list<std::string> list): IngredientList()
+{
+  for (auto &i : list) {
+    add_ingredient({i});
+  }
+}
+
+IngredientList::IngredientList()
+{
+}
+

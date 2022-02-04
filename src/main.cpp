@@ -1,30 +1,51 @@
 #include <iostream>
 #include <Component.h>
 
+
+void test_recursive()
+{
+  Recipe         netherStarRecipe{
+    {"netherStar:2"},
+    {"tinyNetherStarDust", "magmaCream"}
+  };
+  Recipe         tinyNetherStarDustRecipe{
+    {"tinyNetherStarDust:9"},
+    {"netherStarDust"}
+  };
+  Recipe         netherStarDustRecipe{
+    {"netherStarDust"},
+    {"netherStar"}
+  };
+  //
+  auto           target = Ingredient{"netherStar:64"};
+  auto           result = netherStarRecipe.get_cost(target,
+                                                    {"netherStarDust:4"});
+  IngredientList cost   = result.first;
+  for (auto &[name, ingredient]: cost)
+  {
+    std::cout << ingredient.get_str() << std::endl;
+  }
+  //
+  Component::memory_cleanup();
+}
+
 void test()
 {
-  Recipe         woodPickaxeRecipe{
+  Recipe     woodPickaxeRecipe{
     {"woodPickaxe"},
     {"woodPlank:3", "stick:2"}
   };
-  Recipe         stickRecipe{
+  Recipe     woodPlankRecipe{
+    {"woodPlank:4"},
+    {"woodLog:1"}
+  };
+  Recipe     stickRecipe{
     {"stick:4"},
     {"woodPlank:2"}
   };
-  Recipe         woodPlankRecipe{
-    {"woodPlank:4"},
-    {"woodLog"}
-  };
   //
-  Ingredient     test{"woodPickaxe:64"};
-  auto           output = woodPickaxeRecipe.get_cost(test);
-  IngredientList list   = output.first;
-  IngredientList excess = output.second;
-  std::cout << test.get_str() << " requires:" << std::endl;
-  for (auto &[name, ingredient]: list)
-  {
-    std::cout << "\t" << ingredient.get_str() << std::endl;
-  }
+  Ingredient target{"woodPickaxe:64"};
+  woodPickaxeRecipe.get_cost(target);
   Component::memory_cleanup();
 }
 
@@ -32,7 +53,7 @@ void test()
 int main()
 {
   std::cout << "Hello, World!" << std::endl;
-  test();
+  test_recursive();
   std::cout << "Goodbye, World!" << std::endl;
   return 0;
 }

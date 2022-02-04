@@ -19,8 +19,9 @@ class Recipe
 private:
   IngredientList *inputs, *outputs;
   bool enabled = true;
-  void get_cost_rec(Ingredient, IngredientList*, IngredientList*);
+  void get_cost_rec(Ingredient, IngredientList*, IngredientList*, unsigned=0);
 public:
+  static const unsigned MAX_REC = 5000;
   explicit Recipe();
   Recipe(std::initializer_list<Ingredient>, std::initializer_list<Ingredient>);
   Recipe(std::initializer_list<std::string>,
@@ -30,6 +31,8 @@ public:
   void add_input(Ingredient ingredient);
   void add_output(Ingredient ingredient);
   std::pair<IngredientList, IngredientList> get_cost(Ingredient);
+  std::pair<IngredientList, IngredientList> get_cost(Ingredient,
+                                                     IngredientList);
   Ingredient *get_output_ingredient(Ingredient& ingredient);
 };
 

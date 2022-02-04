@@ -15,6 +15,9 @@ class IngredientList: public std::map<std::string, Ingredient>
 {
 private:
 public:
+  explicit IngredientList();
+  IngredientList(std::initializer_list<Ingredient>);
+  IngredientList(std::initializer_list<std::string>);
   void add_ingredient(Ingredient);
   void subtract_ingredient(Ingredient);
   void combine_with(IngredientList&);

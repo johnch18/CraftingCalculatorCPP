@@ -37,6 +37,7 @@ public:
   void divide(unsigned);
   bool isValid() const;
   std::string get_str();
+  bool is_same_as(Ingredient&);
 };
 
 
