@@ -20,8 +20,13 @@ void test_recursive()
   auto           target = Ingredient{"netherStar:64"};
   auto           result = netherStarRecipe.get_cost(target,
                                                     {"tinyNetherStarDust:1"});
-  IngredientList cost   = result.first;
+  IngredientList cost   = result.first,
+                 excess = result.second;
   for (auto &[name, ingredient]: cost)
+  {
+    std::cout << ingredient.get_str() << std::endl;
+  }
+  for (auto &[name, ingredient]: excess)
   {
     std::cout << ingredient.get_str() << std::endl;
   }
@@ -44,8 +49,20 @@ void test()
     {"woodPlank:2"}
   };
   //
-  Ingredient target{"woodPickaxe:64"};
-  woodPickaxeRecipe.get_cost(target);
+  Ingredient target{"woodPickaxe:26"};
+  auto       result = woodPickaxeRecipe.get_cost(target);
+  auto       cost   = result.first;
+  auto       cache  = result.second;
+  std::cout << "Inputs required:" << std::endl;
+  for (auto &[name, ingredient]: cost)
+  {
+    std::cout << ingredient.get_str() << std::endl;
+  }
+  std::cout << "Excess leftovers:" << std::endl;
+  for (auto &[name, ingredient]: cache)
+  {
+    std::cout << ingredient.get_str() << std::endl;
+  }
   Component::memory_cleanup();
 }
 
@@ -53,7 +70,7 @@ void test()
 int main()
 {
   std::cout << "Hello, World!" << std::endl;
-  test_recursive();
+  test();
   std::cout << "Goodbye, World!" << std::endl;
   return 0;
 }

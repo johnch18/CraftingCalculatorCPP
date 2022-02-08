@@ -9,9 +9,11 @@
 
 #include "Ingredient.h"
 
+
 class Ingredient;
 
-class IngredientList: public std::map<std::string, Ingredient>
+
+class IngredientList : public std::map<std::string, Ingredient>
 {
 private:
 public:
@@ -20,9 +22,10 @@ public:
   IngredientList(std::initializer_list<std::string>);
   void add_ingredient(Ingredient);
   void subtract_ingredient(Ingredient);
-  void combine_with(IngredientList&);
+  void combine_with(IngredientList &);
   bool contains(std::string);
-  bool contains(Ingredient&);
+  bool contains(Ingredient &);
+  std::string get_str();
 };
 
 

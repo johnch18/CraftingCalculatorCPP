@@ -19,24 +19,26 @@ Component *Ingredient::get_component() const
   return component;
 }
 
-void Ingredient::add(unsigned num)
+Ingredient Ingredient::add(unsigned num) const
 {
-  amount += num;
+  return Ingredient{get_component(), amount + num};
 }
 
-void Ingredient::subtract(unsigned num)
+Ingredient Ingredient::subtract(unsigned num) const
 {
-  amount -= num;
+  return Ingredient{get_component(), amount - num};
 }
 
-void Ingredient::multiply(unsigned num)
+Ingredient Ingredient::multiply(unsigned num) const
 {
-  amount *= num;
+  return Ingredient{get_component(), amount * num};
 }
 
-void Ingredient::divide(unsigned num)
+Ingredient Ingredient::divide(unsigned num) const
 {
-  amount = ceil(static_cast<double>(amount) / num);
+  return Ingredient{get_component(),
+                    static_cast<unsigned>(ceil(static_cast<double>(amount) /
+                                               num))};
 }
 
 Ingredient::Ingredient(Component *component, unsigned amount)
@@ -141,4 +143,24 @@ void Ingredient::init_from_string(std::string name)
 bool Ingredient::is_same_as(Ingredient &other)
 {
   return component == other.component;
+}
+
+void Ingredient::add_in_place(unsigned value)
+{
+  amount += value;
+}
+
+void Ingredient::sub_in_place(unsigned value)
+{
+  amount -= value;
+}
+
+void Ingredient::multiply_in_place(unsigned value)
+{
+  amount *= value;
+}
+
+void Ingredient::divide_in_place(unsigned value)
+{
+  amount /= value;
 }

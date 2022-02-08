@@ -44,63 +44,55 @@ Ingredient *Recipe::get_output_ingredient(Ingredient &ingredient)
 void Recipe::get_cost_rec(Ingredient ing, IngredientList *inputList,
                           IngredientList *cache, unsigned depth)
 {
-  // std::cout << ing.get_str() << std::endl;
-  // Don't go too deep
-  if (depth > Recipe::MAX_REC)
-  {
+  // Check if setup is valid
+  if (depth > Recipe::MAX_REC || inputList == nullptr || cache == nullptr)
     return;
-  }
-  // Get the ingredient matching the component type of ing
-  Ingredient *target      = get_output_ingredient(ing);
-  // Shouldn't happen, but might
-  // TODO: Add way to deal with this
-  if (target == nullptr)
+  // Get the output ingredient and validate
+  Ingredient *targetIngredient = get_output_ingredient(ing);
+  if (targetIngredient == nullptr)
+    return;
+  // Adjust if ingredient in cache
+  for (auto &[name, cacheIngredient]: *cache)
   {
-    throw std::exception();
-  }
-  // Check if cache has the requested item, use what's needed
-  if (cache->contains(ing))
-  {
-    auto     &cacheIng = cache->at(ing.get_component()->get_name());
-    unsigned n         = std::min(ing.get_amount(), cacheIng.get_amount());
-    cacheIng.subtract(n);
-    ing.subtract(n);
-  }
-  // Get how many times the recipe must be executed to get the desired amount
-  auto       ingAmount    = static_cast<double>(ing.get_amount());
-  double     targetFactor = target->get_amount() * target->get_chance();
-  unsigned   numCrafts    = ceil(ingAmount / targetFactor);
-  // Iterate through inputs
-  for (auto  &_ingredient: *inputs)
-  {
-    // Get recipe and calculate how many of the ingredient you'll need
-    Ingredient ingredient = _ingredient.second;
-    Recipe     *recipe    = ingredient.get_component()->get_active_recipe();
-    ingredient.multiply(numCrafts);
-    // Ignore ingredients without recipes or with disabled recipes
-    if (recipe == nullptr || !recipe->is_enabled())
+    if (cacheIngredient.is_same_as(ing))
     {
-      inputList->add_ingredient(ingredient);
+      // Possible bug here
+      unsigned n = std::min(ing.get_amount(), cacheIngredient.get_amount());
+      ing.sub_in_place(n);
+      cacheIngredient.sub_in_place(n);
+    }
+  }
+  // Ignore if request satisfied
+  if (ing.get_amount() <= 0)
+    return;
+  // Calculate factors
+  double   amount         = targetIngredient->get_amount();
+  double   chance         = targetIngredient->get_chance();
+  double   factor         = amount * chance;
+  unsigned numberOfCrafts = ceil(ing.get_amount() / factor);
+  // Iterate through inputs
+  for (auto &[name, inputIngredient]: *inputs)
+  {
+    auto newInputIngredient = inputIngredient.multiply(numberOfCrafts);
+    auto *component         = newInputIngredient.get_component();
+    auto *recipe            = component->get_active_recipe();
+    // Check if an active recipe exists
+    // If not, add the ingredient as itself and continue
+    if (recipe == nullptr || !recipe->enabled)
+    {
+      inputList->add_ingredient(newInputIngredient);
       continue;
     }
-    // Depth first traversal
-    IngredientList tempIList;
-    recipe->get_cost_rec(ingredient, &tempIList, cache, depth + 1);
-    // Iterate through results
-    for (auto &[name, i]: tempIList)
-    {
-      // Check if this was the target ingredient
-      if (i.is_same_as(ingredient))
-      {
-        unsigned targetNum = ingredient.get_amount();
-        unsigned actualNum = i.get_amount();
-      }
-      else
-      {
+    // Recurse
+    recipe->get_cost_rec(newInputIngredient, inputList, cache, depth + 1);
+  }
+  // Deal with excess outputs
+  for (auto &[name, outputIngredient]: *outputs)
+  {
+    // Ignore ing
+    if (!outputIngredient.is_same_as(ing)) {
 
-      }
     }
-    inputList->combine_with(tempIList);
   }
 }
 
@@ -152,7 +144,7 @@ std::pair<IngredientList, IngredientList> Recipe::get_cost(Ingredient inp,
                                                            preCache)
 {
   std::pair<IngredientList, IngredientList> result = {IngredientList{},
-                                                      IngredientList{"netherStar"}};
+                                                      IngredientList{}};
   result.second.combine_with(preCache);
   get_cost_rec(inp, &result.first, &result.second);
   return result;
