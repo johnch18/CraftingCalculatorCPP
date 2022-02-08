@@ -91,7 +91,7 @@ void Recipe::get_cost_rec(Ingredient ing, IngredientList *inputList,
   {
     // Ignore ing
     if (!outputIngredient.is_same_as(ing)) {
-
+      cache->add_ingredient(outputIngredient);
     }
   }
 }
