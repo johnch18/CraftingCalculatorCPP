@@ -41,35 +41,36 @@ Ingredient *Recipe::get_output_ingredient(Ingredient &ingredient)
   return nullptr;
 }
 
-void Recipe::get_cost_rec(Ingredient ing, IngredientList *inputList,
+void Recipe::get_cost_rec(Ingredient initialIngredient, IngredientList *inputList,
                           IngredientList *cache, unsigned depth)
 {
   // Check if setup is valid
   if (depth > Recipe::MAX_REC || inputList == nullptr || cache == nullptr)
     return;
   // Get the output ingredient and validate
-  Ingredient *targetIngredient = get_output_ingredient(ing);
+  Ingredient *targetIngredient = get_output_ingredient(initialIngredient);
   if (targetIngredient == nullptr)
     return;
   // Adjust if ingredient in cache
   for (auto &[name, cacheIngredient]: *cache)
   {
-    if (cacheIngredient.is_same_as(ing))
+    if (cacheIngredient.is_same_as(initialIngredient))
     {
       // Possible bug here
-      unsigned n = std::min(ing.get_amount(), cacheIngredient.get_amount());
-      ing.sub_in_place(n);
+      unsigned n = std::min(initialIngredient.get_amount(),
+                            cacheIngredient.get_amount());
+      initialIngredient.sub_in_place(n);
       cacheIngredient.sub_in_place(n);
     }
   }
   // Ignore if request satisfied
-  if (ing.get_amount() <= 0)
+  if (initialIngredient.get_amount() <= 0)
     return;
   // Calculate factors
   double   amount         = targetIngredient->get_amount();
   double   chance         = targetIngredient->get_chance();
   double   factor         = amount * chance;
-  unsigned numberOfCrafts = ceil(ing.get_amount() / factor);
+  unsigned numberOfCrafts = ceil(initialIngredient.get_amount() / factor);
   // Iterate through inputs
   for (auto &[name, inputIngredient]: *inputs)
   {
@@ -89,8 +90,9 @@ void Recipe::get_cost_rec(Ingredient ing, IngredientList *inputList,
   // Deal with excess outputs
   for (auto &[name, outputIngredient]: *outputs)
   {
-    // Ignore ing
-    if (!outputIngredient.is_same_as(ing)) {
+    // Ignore initialIngredient
+    if (!outputIngredient.is_same_as(initialIngredient))
+    {
       cache->add_ingredient(outputIngredient);
     }
   }
