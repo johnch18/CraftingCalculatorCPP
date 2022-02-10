@@ -72,21 +72,6 @@ void Recipe::get_cost_rec(Ingredient initialIngredient, IngredientList *inputLis
   double   factor         = amount * chance;
   unsigned numberOfCrafts = ceil(initialIngredient.get_amount() / factor);
   // Iterate through inputs
-  for (auto &[_, inputIngredient]: *inputs)
-  {
-    auto newInputIngredient = inputIngredient.multiply(numberOfCrafts);
-    auto *component         = newInputIngredient.get_component();
-    auto *recipe            = component->get_active_recipe();
-    // Check if an active recipe exists
-    // If not, add the ingredient as itself and continue
-    if (recipe == nullptr || !recipe->enabled)
-    {
-      inputList->add_ingredient(newInputIngredient);
-      continue;
-    }
-    // Recurse
-    recipe->get_cost_rec(newInputIngredient, inputList, cache, depth + 1);
-  }
   // Deal with excess outputs
   for (auto &[_, outputIngredient]: *outputs)
   {
@@ -103,6 +88,22 @@ void Recipe::get_cost_rec(Ingredient initialIngredient, IngredientList *inputLis
         cache->add_ingredient(Ingredient(scaledIngredient.get_component(), delta));
     }
   }
+  for (auto &[_, inputIngredient]: *inputs)
+  {
+    auto newInputIngredient = inputIngredient.multiply(numberOfCrafts);
+    auto *component         = newInputIngredient.get_component();
+    auto *recipe            = component->get_active_recipe();
+    // Check if an active recipe exists
+    // If not, add the ingredient as itself and continue
+    if (recipe == nullptr || !recipe->enabled)
+    {
+      inputList->add_ingredient(newInputIngredient);
+      continue;
+    }
+    // Recurse
+    recipe->get_cost_rec(newInputIngredient, inputList, cache, depth + 1);
+  }
+
 }
 
 bool Recipe::is_enabled() const
@@ -147,14 +148,15 @@ Recipe::Recipe(std::initializer_list<std::string> outputs,
   }
 }
 
-std::pair<IngredientList, IngredientList> Recipe::get_cost(Ingredient inp,
-                                                           IngredientList
-                                                           preCache)
+std::pair<IngredientList, IngredientList> Recipe::get_cost(Ingredient inp, IngredientList preCache)
 {
-  std::pair<IngredientList, IngredientList> result = {IngredientList{},
-                                                      IngredientList{}};
+  std::pair<IngredientList, IngredientList> result = {IngredientList{}, IngredientList{}};
   result.second.combine_with(preCache);
-  get_cost_rec(inp, &result.first, &result.second);
+  for (unsigned i = 0; i < inp.get_amount(); i++)
+  {
+    Ingredient temp = Ingredient{inp.get_component(), 1};
+    get_cost_rec(temp, &result.first, &result.second);
+  }
   return result;
 }
 
