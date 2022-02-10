@@ -64,7 +64,7 @@ def testing(num, needed=None, inventory=None):
 
 
 def main():
-    for i in range(1, 1024 + 1):
+    for i in range(1, 64 + 1):
         r = IList()
         e = IList(nullCatalyst=1, tinyDust=1)
         req, extra = testing(i, r, e)

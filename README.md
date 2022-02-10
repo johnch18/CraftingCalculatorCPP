@@ -1,6 +1,6 @@
 # Crafting Calculator vAlpha
 
-## Supports (Eventually):
+## Supports:
 
 - Recursive crafting
 - Multiple recipes (must manually select a recipe to use though, give me a break I'm not going to read your mind)

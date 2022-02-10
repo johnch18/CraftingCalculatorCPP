@@ -57,8 +57,7 @@ void Recipe::get_cost_rec(Ingredient initialIngredient, IngredientList *inputLis
     if (cacheIngredient.is_same_as(initialIngredient))
     {
       // Possible bug here
-      unsigned n = std::min(initialIngredient.get_amount(),
-                            cacheIngredient.get_amount());
+      unsigned n = std::min(initialIngredient.get_amount(), cacheIngredient.get_amount());
       initialIngredient.sub_in_place(n);
       cacheIngredient.sub_in_place(n);
     }
@@ -134,8 +133,7 @@ std::pair<IngredientList, IngredientList> Recipe::get_cost(Ingredient inp)
   return get_cost(inp, IngredientList());
 }
 
-Recipe::Recipe(std::initializer_list<std::string> outputs,
-               std::initializer_list<std::string> inputs)
+Recipe::Recipe(std::initializer_list<std::string> outputs, std::initializer_list<std::string> inputs)
   : Recipe()
 {
   for (auto &input: inputs)
