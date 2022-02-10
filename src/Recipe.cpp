@@ -152,11 +152,7 @@ std::pair<IngredientList, IngredientList> Recipe::get_cost(Ingredient inp, Ingre
 {
   std::pair<IngredientList, IngredientList> result = {IngredientList{}, IngredientList{}};
   result.second.combine_with(preCache);
-  for (unsigned i = 0; i < inp.get_amount(); i++)
-  {
-    Ingredient temp = Ingredient{inp.get_component(), 1};
-    get_cost_rec(temp, &result.first, &result.second);
-  }
+  get_cost_rec(inp, &result.first, &result.second);
   return result;
 }
 
