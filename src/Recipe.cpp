@@ -52,7 +52,7 @@ void Recipe::get_cost_rec(Ingredient initialIngredient, IngredientList *inputLis
   if (targetIngredient == nullptr)
     return;
   // Adjust if ingredient in cache
-  for (auto &[name, cacheIngredient]: *cache)
+  for (auto &[_, cacheIngredient]: *cache)
   {
     if (cacheIngredient.is_same_as(initialIngredient))
     {
@@ -72,7 +72,7 @@ void Recipe::get_cost_rec(Ingredient initialIngredient, IngredientList *inputLis
   double   factor         = amount * chance;
   unsigned numberOfCrafts = ceil(initialIngredient.get_amount() / factor);
   // Iterate through inputs
-  for (auto &[name, inputIngredient]: *inputs)
+  for (auto &[_, inputIngredient]: *inputs)
   {
     auto newInputIngredient = inputIngredient.multiply(numberOfCrafts);
     auto *component         = newInputIngredient.get_component();
@@ -88,12 +88,19 @@ void Recipe::get_cost_rec(Ingredient initialIngredient, IngredientList *inputLis
     recipe->get_cost_rec(newInputIngredient, inputList, cache, depth + 1);
   }
   // Deal with excess outputs
-  for (auto &[name, outputIngredient]: *outputs)
+  for (auto &[_, outputIngredient]: *outputs)
   {
+    auto scaledIngredient = outputIngredient.multiply(numberOfCrafts);
     // Ignore initialIngredient
-    if (!outputIngredient.is_same_as(initialIngredient))
+    if (!scaledIngredient.is_same_as(initialIngredient))
     {
-      cache->add_ingredient(outputIngredient);
+      cache->add_ingredient(scaledIngredient);
+    }
+    else
+    {
+      unsigned delta = scaledIngredient.get_amount() - initialIngredient.get_amount();
+      if (delta > 0)
+        cache->add_ingredient(Ingredient(scaledIngredient.get_component(), delta));
     }
   }
 }
@@ -108,8 +115,7 @@ void Recipe::set_enabled(bool isEnabled)
   Recipe::enabled = isEnabled;
 }
 
-Recipe::Recipe(std::initializer_list<Ingredient> outputs,
-               std::initializer_list<Ingredient> inputs)
+Recipe::Recipe(std::initializer_list<Ingredient> outputs, std::initializer_list<Ingredient> inputs)
   : Recipe()
 {
   for (auto &output: outputs)
@@ -131,11 +137,11 @@ Recipe::Recipe(std::initializer_list<std::string> outputs,
                std::initializer_list<std::string> inputs)
   : Recipe()
 {
-  for (auto input: inputs)
+  for (auto &input: inputs)
   {
     this->add_input(Ingredient{input});
   }
-  for (auto output: outputs)
+  for (auto &output: outputs)
   {
     this->add_output(Ingredient{output});
   }
