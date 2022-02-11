@@ -50,3 +50,11 @@ Should we query the program with the following:
     //
     Component::memory_cleanup();
 ```
+We would get the following output:
+```
+Inputs: 
+magmaCream:34
+Excess Outputs: 
+tinyNetherStarDust:3
+```
+Which is correct.
