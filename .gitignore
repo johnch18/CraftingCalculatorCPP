@@ -4,3 +4,6 @@ CMakeCache.txt
 testing/*
 CMakeFiles/*
 Testing/*
+cmake_install.cmake
+craftingCalculator.cbp
+craftingCalculator
