@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="craftingCalculator"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/data/workspace/mc/misc/craftingCalculator"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/data/workspace/mc/misc/craftingCalculator"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/data/workspace/mc/misc/craftingCalculator"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="craftingCalculator">
+				<Option output="/home/data/workspace/mc/misc/craftingCalculator/craftingCalculator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/data/workspace/mc/misc/craftingCalculator"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/data/workspace/mc/misc/craftingCalculator/inc"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 craftingCalculator"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="craftingCalculator/fast">
+				<Option output="/home/data/workspace/mc/misc/craftingCalculator/craftingCalculator" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/data/workspace/mc/misc/craftingCalculator"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/data/workspace/mc/misc/craftingCalculator/inc"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 craftingCalculator/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/data/workspace/mc/misc/craftingCalculator/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/Component.h">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/CraftingCalculator.h">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/IIngredient.h">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/Ingredient.h">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/IngredientList.h">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/NbtData.h">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/OreDictEntry.h">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/OreDictIngredient.h">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/Recipe.cpp">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/Recipe.h">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/src/Component.cpp">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/src/IIngredient.cpp">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/src/Ingredient.cpp">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/src/IngredientList.cpp">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/src/NbtData.cpp">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/src/OreDictEntry.cpp">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/src/OreDictIngredient.cpp">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/src/main.cpp">
+			<Option target="craftingCalculator"/>
+		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
