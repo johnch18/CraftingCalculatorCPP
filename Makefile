@@ -129,30 +129,6 @@ craftingCalculator/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/craftingCalculator.dir/build.make CMakeFiles/craftingCalculator.dir/build
 .PHONY : craftingCalculator/fast
 
-inc/Recipe.o: inc/Recipe.cpp.o
-.PHONY : inc/Recipe.o
-
-# target to build an object file
-inc/Recipe.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/craftingCalculator.dir/build.make CMakeFiles/craftingCalculator.dir/inc/Recipe.cpp.o
-.PHONY : inc/Recipe.cpp.o
-
-inc/Recipe.i: inc/Recipe.cpp.i
-.PHONY : inc/Recipe.i
-
-# target to preprocess a source file
-inc/Recipe.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/craftingCalculator.dir/build.make CMakeFiles/craftingCalculator.dir/inc/Recipe.cpp.i
-.PHONY : inc/Recipe.cpp.i
-
-inc/Recipe.s: inc/Recipe.cpp.s
-.PHONY : inc/Recipe.s
-
-# target to generate assembly for a file
-inc/Recipe.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/craftingCalculator.dir/build.make CMakeFiles/craftingCalculator.dir/inc/Recipe.cpp.s
-.PHONY : inc/Recipe.cpp.s
-
 src/Component.o: src/Component.cpp.o
 .PHONY : src/Component.o
 
@@ -321,6 +297,30 @@ src/OreDictIngredient.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/craftingCalculator.dir/build.make CMakeFiles/craftingCalculator.dir/src/OreDictIngredient.cpp.s
 .PHONY : src/OreDictIngredient.cpp.s
 
+src/Recipe.o: src/Recipe.cpp.o
+.PHONY : src/Recipe.o
+
+# target to build an object file
+src/Recipe.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/craftingCalculator.dir/build.make CMakeFiles/craftingCalculator.dir/src/Recipe.cpp.o
+.PHONY : src/Recipe.cpp.o
+
+src/Recipe.i: src/Recipe.cpp.i
+.PHONY : src/Recipe.i
+
+# target to preprocess a source file
+src/Recipe.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/craftingCalculator.dir/build.make CMakeFiles/craftingCalculator.dir/src/Recipe.cpp.i
+.PHONY : src/Recipe.cpp.i
+
+src/Recipe.s: src/Recipe.cpp.s
+.PHONY : src/Recipe.s
+
+# target to generate assembly for a file
+src/Recipe.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/craftingCalculator.dir/build.make CMakeFiles/craftingCalculator.dir/src/Recipe.cpp.s
+.PHONY : src/Recipe.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -354,9 +354,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... craftingCalculator"
-	@echo "... inc/Recipe.o"
-	@echo "... inc/Recipe.i"
-	@echo "... inc/Recipe.s"
 	@echo "... src/Component.o"
 	@echo "... src/Component.i"
 	@echo "... src/Component.s"
@@ -378,6 +375,9 @@ help:
 	@echo "... src/OreDictIngredient.o"
 	@echo "... src/OreDictIngredient.i"
 	@echo "... src/OreDictIngredient.s"
+	@echo "... src/Recipe.o"
+	@echo "... src/Recipe.i"
+	@echo "... src/Recipe.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
