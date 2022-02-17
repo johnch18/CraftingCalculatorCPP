@@ -110,6 +110,9 @@
 		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/OreDictIngredient.h">
 			<Option target="craftingCalculator"/>
 		</Unit>
+		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/Recipe.cpp">
+			<Option target="craftingCalculator"/>
+		</Unit>
 		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/inc/Recipe.h">
 			<Option target="craftingCalculator"/>
 		</Unit>
@@ -132,9 +135,6 @@
 			<Option target="craftingCalculator"/>
 		</Unit>
 		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/src/OreDictIngredient.cpp">
-			<Option target="craftingCalculator"/>
-		</Unit>
-		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/src/Recipe.cpp">
 			<Option target="craftingCalculator"/>
 		</Unit>
 		<Unit filename="/home/data/workspace/mc/misc/craftingCalculator/src/main.cpp">
