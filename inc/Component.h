@@ -13,6 +13,7 @@
 
 
 class Component;
+class Recipe;
 
 
 typedef std::map<unsigned, Component *> ComponentMap;
@@ -27,13 +28,13 @@ class Component
    * */
 private:
   // Stores all components in existence
-  static ComponentMap    REGISTRY;
+  static ComponentMap   REGISTRY;
   // Fields
-  std::string            name;
-  unsigned               idNumber,
-                         metadata;
-  NBTData                *nbtData;
-  bool                   isFluid;
+  std::string           name;
+  unsigned              idNumber,
+                        metadata;
+  NBTData               *nbtData;
+  bool                  isFluid;
   std::vector<Recipe *> recipes;
 public:
   // Initializer hidden

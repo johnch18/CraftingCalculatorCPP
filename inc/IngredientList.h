@@ -7,10 +7,13 @@
 #define CRAFTINGCALCULATOR_INGREDIENTLIST_H
 
 
-#include "Ingredient.h"
+#include "IIngredient.h"
 
 
-class IngredientList: public std::map<unsigned, Ingredient>
+class IIngredient;
+
+
+class IngredientList: public std::map<unsigned, IIngredient*>
 {
   /*
    * Basically just a wrapper for map that allows me to do some convenient checking
@@ -18,7 +21,7 @@ class IngredientList: public std::map<unsigned, Ingredient>
 private:
 public:
   // Adds the ingredient to the map
-  void add_ingredient(Ingredient&);
+  void add_ingredient(IIngredient*);
 };
 
 

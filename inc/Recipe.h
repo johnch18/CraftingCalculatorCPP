@@ -10,11 +10,20 @@
 #include "IngredientList.h"
 
 
+class IngredientList;
+
+
 class Recipe
 {
+  /*
+   * Stores a map of inputs to outputs
+   * */
 private:
-  IngredientList inputs, outputs;
-  bool isEnabled = true;
+  // Inputs and outputs
+  IngredientList *inputs,
+                 *outputs;
+  // Whether the recipe should be checked
+  bool           isEnabled = true;
 public:
 };
 

@@ -8,5 +8,10 @@
 // Initialize registry
 ComponentMap Component::REGISTRY = ComponentMap();
 
+unsigned Component::get_hash()
+{
+  return 0;
+}
+
 
 

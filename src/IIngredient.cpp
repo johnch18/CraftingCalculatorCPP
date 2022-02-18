@@ -6,6 +6,7 @@
 #include "IIngredient.h"
 
 
+void IIngredient::combine_with(IIngredient *other)
+{
 
-
-
+}

@@ -9,6 +9,8 @@
 
 #include "Component.h"
 
+class Component;
+
 
 class IIngredient
 {
@@ -31,6 +33,7 @@ public:
   IIngredient &operator=(IIngredient &&) = delete;
   // Getter for component, will be different depending on the ingredient type
   virtual Component *get_component() = 0;
+  void combine_with(IIngredient *other);
 };
 
 
