@@ -41,11 +41,12 @@ public:
   Component() = delete;
   // TODO Disable copy constructor
   // This is how components will be created
-  static Component *create_component();
+  static Component *create_component(std::string, unsigned, unsigned, NBTData*, bool=false);
   // This is how they will be destroyed
   static void destroy_components();
   // Get hash of component for convenience
-  unsigned get_hash();
+  static unsigned long get_hash(std::string name, unsigned idNum, unsigned metadata, NBTData *nbt, bool isFluid);
+  unsigned long get_hash();
 };
 
 
