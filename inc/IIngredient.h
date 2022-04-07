@@ -26,14 +26,14 @@ private:
   double   chance    = 1.0;
 public:
   // Rule of 0
-  IIngredient() = delete;
+  /*IIngredient() = 0;
   virtual ~IIngredient() = 0;
-  IIngredient(const IIngredient &) = delete;
-  IIngredient &operator=(const IIngredient &) = delete;
-  IIngredient &operator=(IIngredient &&) = delete;
+  IIngredient(const IIngredient &) = 0;
+  IIngredient &operator=(const IIngredient &) = 0;
+  IIngredient &operator=(IIngredient &&) = 0;*/
   // Getter for component, will be different depending on the ingredient type
   virtual Component *get_component() = 0;
-  void combine_with(IIngredient *other);
+  virtual void combine_with(IIngredient *other) = 0;
 };
 
 

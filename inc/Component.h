@@ -36,9 +36,9 @@ private:
   NBTData               *nbtData;
   bool                  isFluid;
   std::vector<Recipe *> recipes;
-public:
   // Initializer hidden
-  Component() = delete;
+  Component() = default;
+public:
   // TODO Disable copy constructor
   // This is how components will be created
   static Component *create_component(std::string, unsigned, unsigned, NBTData*, bool=false);

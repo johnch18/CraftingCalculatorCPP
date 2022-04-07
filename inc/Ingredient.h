@@ -21,9 +21,10 @@ private:
 public:
   // Add RAII methods back
   Ingredient();
-  ~Ingredient() override;
+  ~Ingredient();
   // Getter for component, simply returns it
   Component *get_component() override;
+  void combine_with(IIngredient *) override;
 };
 
 

@@ -25,6 +25,9 @@ private:
   // Whether the recipe should be checked
   bool           isEnabled = true;
 public:
+  // Constructors
+  Recipe();
+  Recipe(std::initializer_list<IIngredient>, std::initializer_list<IIngredient>);
 };
 
 

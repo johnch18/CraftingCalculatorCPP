@@ -17,11 +17,22 @@ unsigned long Component::get_hash()
 Component *Component::create_component(std::string name, unsigned idNum, unsigned metadata, NBTData *nbt, bool isFluid)
 {
   unsigned long hash = Component::get_hash(name, idNum, metadata, nbt, isFluid);
-  if (REGISTRY.find(hash) == REGISTRY.end())
+  // Check registry for hash
+  auto found = REGISTRY.find(hash);
+  if (found == REGISTRY.end())
   {
-
+    // If not found, add it and return
+    auto newComponent = new Component();
+    newComponent->name = name;
+    newComponent->idNumber = idNum;
+    newComponent->metadata = metadata;
+    newComponent->nbtData = nbt;
+    newComponent->isFluid = isFluid;
+    return newComponent;
+  } else {
+    // If found, return
+    return found->second;
   }
-
 }
 
 unsigned long Component::get_hash(std::string name, unsigned idNum, unsigned metadata, NBTData *nbt, bool isFluid)
@@ -36,6 +47,11 @@ unsigned long Component::get_hash(std::string name, unsigned idNum, unsigned met
   hash += static_cast<unsigned>(isFluid);
   // TODO: Figure out NBT data
   return hash;
+}
+
+void Component::destroy_components()
+{
+  // TODO: Implement
 }
 
 

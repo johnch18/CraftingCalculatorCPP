@@ -5,7 +5,14 @@
 
 #include <CraftingCalculator.h>
 
+
 int main()
 {
+  Ingredient netherStar{};
+  Ingredient tinyNetherStarDust{};
+  Recipe test {
+    {netherStar},
+    {tinyNetherStarDust}
+  };
   return 0;
 }
